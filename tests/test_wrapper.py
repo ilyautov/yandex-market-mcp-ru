@@ -60,3 +60,20 @@ def test_registry_description_fits():
     assert len(sj["description"]) <= 100, "реестр отвечает 422, а не обрезает"
     assert (ROOT / "README.md").read_text(encoding="utf-8").count(
         "<!-- mcp-name: " + sj["name"] + " -->") == 1
+
+
+def test_skill_description_fits_the_spec():
+    """Спека Agent Skills режет description на 1024 символах, и лишнее поле во
+    фронтматтере это отказ установки, а не предупреждение."""
+    text = (ROOT / "skills" / "yandex-market-mcp" / "SKILL.md").read_text(encoding="utf-8")
+    head = text.split("---")[1]
+    fields = [ln.split(":", 1)[0] for ln in head.splitlines() if ln and not ln.startswith(" ")]
+    assert set(fields) == {"name", "description"}, fields
+    desc = head.split('description: "', 1)[1].rsplit('"', 1)[0]
+    assert len(desc) <= 1024, len(desc)
+
+
+def test_no_skill_in_repository_root():
+    """Корневой SKILL.md заставляет npx skills add считать скиллом весь
+    репозиторий и копировать его пользователю целиком."""
+    assert not (ROOT / "SKILL.md").exists()
