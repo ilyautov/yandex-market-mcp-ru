@@ -117,6 +117,18 @@ npx skills add ilyautov/yandex-market-mcp-ru
 | только Яндекс Маркет | `yandex-market-mcp-ru` |
 | все четыре маркетплейса | `marketplaces-mcp-ru` |
 
+## Кто это сделал
+
+[Илья Утов](https://github.com/ilyautov), лаборатория
+[AI Frontier](https://aifrontier.tech). Как эти инструменты устроены внутри,
+пишу в [Telegram](https://t.me/gorilla_under_hood) и
+[LinkedIn](https://www.linkedin.com/in/ilyautov).
+
+Рядом стоят [**business-mcp-ru**](https://github.com/ilyautov/business-mcp-ru)
+(hh.ru, VK, Диадок, СБИС, Честный знак),
+[**moysklad-mcp-ru**](https://github.com/ilyautov/moysklad-mcp-ru) и
+[**humanizer-ru**](https://github.com/ilyautov/humanizer-ru).
+
 ## Лицензия
 
 MIT, см. [LICENSE](LICENSE).
