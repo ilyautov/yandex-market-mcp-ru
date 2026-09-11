@@ -1,0 +1,34 @@
+[project]
+name = "yandex-market-mcp-ru"
+version = "0.5.3"
+description = "API Яндекс Маркета (Partner API) для ИИ-ассистентов: заказы и возвраты, товары и карточки, цены и тарифы, отчёты, отзывы и чаты"
+keywords = ["mcp", "model-context-protocol", "yandex-market", "yandex-market-api", "яндекс-маркет", "seller-api", "marketplace", "ecommerce", "russia", "claude"]
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+authors = [{ name = "Ilya Utov" }]
+dependencies = [
+    # Весь код приходит отсюда. Версия фиксируется снизу и держится в пределах
+    # мажорной: обёртка обязана ставить то ядро, про которое написан README.
+    "marketplaces-mcp-ru>=0.5.3,<1",
+]
+
+[project.urls]
+Homepage = "https://marketplaces-mcp-ru.aifrontier.tech/yandex-market-api.html"
+Documentation = "https://marketplaces-mcp-ru.aifrontier.tech/yandex-market-api.html"
+Repository = "https://github.com/ilyautov/yandex-market-mcp-ru"
+Issues = "https://github.com/ilyautov/yandex-market-mcp-ru/issues"
+Changelog = "https://github.com/ilyautov/yandex-market-mcp-ru/blob/main/CHANGELOG.md"
+
+[project.scripts]
+yandex-market-mcp-ru = "yandex_market_mcp_ru:main"
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "pytest-asyncio>=0.23"]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["yandex_market_mcp_ru"]

@@ -1,0 +1,31 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.ilyautov/yandex-market-mcp-ru",
+  "title": "Яндекс Маркет MCP (RU)",
+  "description": "API Яндекс Маркета в ИИ-ассистенте: заказы, товары, цены, отчёты, отзывы",
+  "version": "0.5.3",
+  "repository": {
+    "url": "https://github.com/ilyautov/yandex-market-mcp-ru",
+    "source": "github"
+  },
+  "packages": [
+    {
+      "registryType": "pypi",
+      "registryBaseUrl": "https://pypi.org",
+      "identifier": "yandex-market-mcp-ru",
+      "version": "0.5.3",
+      "runtimeHint": "uvx",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "YANDEX_MARKET_API_KEY",
+          "description": "API-ключ из кабинета партнёра, раздел Настройки → API.",
+          "isRequired": true,
+          "isSecret": true
+        }
+      ]
+    }
+  ]
+}
