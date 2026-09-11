@@ -23,6 +23,14 @@ API Яндекс Маркета (Partner API) для ИИ-ассистентов
 
 ## Установка
 
+Первый релиз на PyPI выпускается тегом `v0.5.3`, до этого пакет ставится прямо из репозитория:
+
+```bash
+uvx --from git+https://github.com/ilyautov/yandex-market-mcp-ru yandex-market-mcp-ru
+```
+
+После релиза строка короче:
+
 ```bash
 uvx yandex-market-mcp-ru
 ```
