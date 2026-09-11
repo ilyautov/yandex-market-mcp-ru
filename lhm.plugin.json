@@ -1,0 +1,1068 @@
+{
+  "identifier": "ilyautov-yandex-market-mcp-ru",
+  "name": "Yandex Market MCP (RU)",
+  "version": "0.5.3",
+  "description": "Yandex Market Partner API in your AI assistant: orders and returns, products and cards, prices and tariffs, reports, reviews and chats. 165 methods live in a YAML catalog the server executes; the agent searches it in plain language and calls a method through three generic tools. Every method carries an access class: reads run immediately, writes and irreversible calls require confirmation. Keys stay on the user's machine.",
+  "author": "Ilya Utov",
+  "authorUrl": "https://github.com/ilyautov",
+  "homepage": "https://github.com/ilyautov/yandex-market-mcp-ru",
+  "icon": "https://raw.githubusercontent.com/ilyautov/yandex-market-mcp-ru/main/assets/logo.png",
+  "tags": [
+    "yandex-market",
+    "yandex-market-api",
+    "partner-api",
+    "marketplace",
+    "ecommerce",
+    "russia"
+  ],
+  "localizations": [
+    {
+      "locale": "ru-RU",
+      "name": "Yandex Market MCP (RU)",
+      "description": "API Яндекс Маркета (Partner API) для ИИ-ассистентов: заказы и возвраты, товары и карточки, цены и тарифы, отчёты, отзывы и чаты. Каталог исполняется сервером. 165 методов живут в YAML-каталоге, который исполняет сервер: агент ищет метод словами и вызывает его тремя общими инструментами. У каждого метода класс доступа: чтение идёт сразу, запись и необратимое спрашивают подтверждение. Ключи остаются на машине пользователя."
+    }
+  ],
+  "tools": [
+    {
+      "name": "ym_check_auth",
+      "description": "Check whether the required credentials are present in the environment.\n\n        Does NOT reveal secret values — only reports which variables are set.\n        Returns JSON: {\"ready\": bool, \"missing\": [str], \"required\": [str]}.\n        ",
+      "inputSchema": {
+        "properties": {},
+        "title": "check_authArguments",
+        "type": "object"
+      },
+      "outputSchema": {
+        "properties": {
+          "result": {
+            "title": "Result",
+            "type": "string"
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "title": "check_authOutput",
+        "type": "object"
+      },
+      "annotations": {
+        "title": "YM check credentials",
+        "readOnlyHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "ym_list_sections",
+      "description": "List API sections and how many catalog endpoints each contains.",
+      "inputSchema": {
+        "properties": {},
+        "title": "list_sectionsArguments",
+        "type": "object"
+      },
+      "outputSchema": {
+        "properties": {
+          "result": {
+            "title": "Result",
+            "type": "string"
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "title": "list_sectionsOutput",
+        "type": "object"
+      },
+      "annotations": {
+        "title": "YM list sections",
+        "readOnlyHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "ym_get_section",
+      "description": "List all endpoints in one section.\n\n        Args:\n            section: section name (see {svc}_list_sections), e.g. \"statistics\".\n        Returns JSON list of {operation_id, method, path, safety, summary}.\n        ",
+      "inputSchema": {
+        "properties": {
+          "section": {
+            "title": "Section",
+            "type": "string"
+          }
+        },
+        "required": [
+          "section"
+        ],
+        "title": "get_sectionArguments",
+        "type": "object"
+      },
+      "outputSchema": {
+        "properties": {
+          "result": {
+            "title": "Result",
+            "type": "string"
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "title": "get_sectionOutput",
+        "type": "object"
+      },
+      "annotations": {
+        "title": "YM get section",
+        "readOnlyHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "ym_search_methods",
+      "description": "Search the endpoint catalog by keyword (works in Russian and English).\n\n        Args:\n            query: free text, e.g. \"остатки\", \"stocks\", \"update price\".\n            limit: max results (1-50).\n        Returns JSON list of matching endpoints (best first).\n        ",
+      "inputSchema": {
+        "properties": {
+          "query": {
+            "title": "Query",
+            "type": "string"
+          },
+          "limit": {
+            "default": 15,
+            "title": "Limit",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "query"
+        ],
+        "title": "search_methodsArguments",
+        "type": "object"
+      },
+      "outputSchema": {
+        "properties": {
+          "result": {
+            "title": "Result",
+            "type": "string"
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "title": "search_methodsOutput",
+        "type": "object"
+      },
+      "annotations": {
+        "title": "YM search methods",
+        "readOnlyHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "ym_map",
+      "description": "The big picture: business entities this API covers and the go-to\n        methods for each. Call with no args to see the whole map (\"you are\n        here\"); pass entity=\"reviews\" (or stocks/prices/orders/…) to list every\n        method of one entity. Use this before guessing — it orients you fast.\n        ",
+      "inputSchema": {
+        "properties": {
+          "entity": {
+            "default": "",
+            "title": "Entity",
+            "type": "string"
+          }
+        },
+        "title": "entity_mapArguments",
+        "type": "object"
+      },
+      "outputSchema": {
+        "properties": {
+          "result": {
+            "title": "Result",
+            "type": "string"
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "title": "entity_mapOutput",
+        "type": "object"
+      },
+      "annotations": {
+        "title": "YM capabilities map",
+        "readOnlyHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "ym_describe_method",
+      "description": "Return the full catalog record for one endpoint: method, host, path,\n        scope, safety level, pagination style, rate limit, params and doc URL.",
+      "inputSchema": {
+        "properties": {
+          "operation_id": {
+            "title": "Operation Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "operation_id"
+        ],
+        "title": "describe_methodArguments",
+        "type": "object"
+      },
+      "outputSchema": {
+        "properties": {
+          "result": {
+            "title": "Result",
+            "type": "string"
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "title": "describe_methodOutput",
+        "type": "object"
+      },
+      "annotations": {
+        "title": "YM describe method",
+        "readOnlyHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "ym_call_method",
+      "description": "Execute one catalog endpoint by operation_id.\n\n        Read endpoints run immediately. WRITE endpoints require confirm_write=true.\n        DESTRUCTIVE endpoints require confirm_write=true AND\n        i_understand_this_modifies_data=true (nothing is sent otherwise).\n\n        Args:\n            operation_id: id from the catalog (see {svc}_search_methods).\n            path_values: values for {placeholders} in the path.\n            query: query-string parameters.\n            body: JSON request body.\n            confirm_write: required for write/destructive operations.\n            i_understand_this_modifies_data: required for destructive operations.\n        Returns JSON: {\"ok\": true, \"status\", \"data\"} or the error envelope.\n        ",
+      "inputSchema": {
+        "properties": {
+          "operation_id": {
+            "title": "Operation Id",
+            "type": "string"
+          },
+          "path_values": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Path Values"
+          },
+          "query": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Query"
+          },
+          "body": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Body"
+          },
+          "confirm_write": {
+            "default": false,
+            "title": "Confirm Write",
+            "type": "boolean"
+          },
+          "i_understand_this_modifies_data": {
+            "default": false,
+            "title": "I Understand This Modifies Data",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "operation_id"
+        ],
+        "title": "call_methodArguments",
+        "type": "object"
+      },
+      "outputSchema": {
+        "properties": {
+          "result": {
+            "title": "Result",
+            "type": "string"
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "title": "call_methodOutput",
+        "type": "object"
+      },
+      "annotations": {
+        "title": "YM call catalog method",
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "ym_call_raw",
+      "description": "Execute ANY endpoint, even ones not in the catalog (full API coverage).\n\n        Safety is inferred from the HTTP verb: GET=read, POST/PUT/PATCH=write,\n        DELETE=destructive. Same confirmation rules as {svc}_call_method.\n\n        Args:\n            method: HTTP verb (GET/POST/PUT/PATCH/DELETE).\n            path: full path beginning with '/', e.g. \"/api/v1/supplier/sales\".\n            host: host override; defaults to the service's default host.\n            query: query-string parameters.\n            body: JSON request body.\n            confirm_write / i_understand_this_modifies_data: confirmations.\n        Returns JSON: {\"ok\": true, \"status\", \"data\"} or the error envelope.\n        ",
+      "inputSchema": {
+        "properties": {
+          "method": {
+            "title": "Method",
+            "type": "string"
+          },
+          "path": {
+            "title": "Path",
+            "type": "string"
+          },
+          "host": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Host"
+          },
+          "query": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Query"
+          },
+          "body": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Body"
+          },
+          "confirm_write": {
+            "default": false,
+            "title": "Confirm Write",
+            "type": "boolean"
+          },
+          "i_understand_this_modifies_data": {
+            "default": false,
+            "title": "I Understand This Modifies Data",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "method",
+          "path"
+        ],
+        "title": "call_rawArguments",
+        "type": "object"
+      },
+      "outputSchema": {
+        "properties": {
+          "result": {
+            "title": "Result",
+            "type": "string"
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "title": "call_rawOutput",
+        "type": "object"
+      },
+      "annotations": {
+        "title": "YM call raw path",
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "ym_fetch_all",
+      "description": "Auto-paginate a read endpoint and return every row in one response.\n\n        Handles offset, last_id, cursor (Ozon v4/v5), page and WB lastChangeDate\n        styles. The array path is taken from the catalog automatically.\n\n        Args:\n            operation_id: a read endpoint from the catalog.\n            query / body / path_values: base parameters (cursor fields are managed).\n            items_path: override the array path (default: the endpoint's own).\n            limit: page size to request.\n            max_items: hard cap to protect context (default 10000).\n        Returns JSON: {\"ok\", \"items\", \"total_fetched\", \"pages_fetched\", \"truncated\"}.\n        ",
+      "inputSchema": {
+        "properties": {
+          "operation_id": {
+            "title": "Operation Id",
+            "type": "string"
+          },
+          "query": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Query"
+          },
+          "body": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Body"
+          },
+          "path_values": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Path Values"
+          },
+          "items_path": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Items Path"
+          },
+          "limit": {
+            "default": 1000,
+            "title": "Limit",
+            "type": "integer"
+          },
+          "max_items": {
+            "default": 10000,
+            "title": "Max Items",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "operation_id"
+        ],
+        "title": "fetch_all_toolArguments",
+        "type": "object"
+      },
+      "outputSchema": {
+        "properties": {
+          "result": {
+            "title": "Result",
+            "type": "string"
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "title": "fetch_all_toolOutput",
+        "type": "object"
+      },
+      "annotations": {
+        "title": "YM fetch all pages",
+        "readOnlyHint": true,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "ym_list_cabinets",
+      "description": "List configured cabinets for this marketplace and which one is active.\n\n        Returns JSON: {\"active\": str|null, \"cabinets\": [names], \"fields_needed\": [...]}.\n        Secret values are never returned.\n        ",
+      "inputSchema": {
+        "properties": {},
+        "title": "list_cabinetsArguments",
+        "type": "object"
+      },
+      "outputSchema": {
+        "properties": {
+          "result": {
+            "title": "Result",
+            "type": "string"
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "title": "list_cabinetsOutput",
+        "type": "object"
+      },
+      "annotations": {
+        "title": "YM list cabinets",
+        "readOnlyHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "ym_add_cabinet",
+      "description": "Add or update a cabinet (a named set of API credentials), from chat.\n\n        ⚠️ This puts the key into the chat transcript — requires\n        i_understand_key_goes_to_chat=true. The terminal-free safe alternative is\n        the installer (install.py / double-click), where the key never enters chat.\n\n        Args:\n            credentials: dict with the required fields for this service\n                ({fields}). For Ozon: {{\"client_id\": \"...\", \"api_key\": \"...\"}};\n                for WB: {{\"token\": \"...\"}}.\n            name: optional label. If omitted, the cabinet is named after the real\n                shop name fetched from the marketplace (falls back to \"main\").\n            i_understand_key_goes_to_chat: must be true to proceed.\n        Saved to ~/.marketplace-mcp/cabinets.json (local, chmod 600), never echoed.\n        ",
+      "inputSchema": {
+        "properties": {
+          "credentials": {
+            "additionalProperties": true,
+            "title": "Credentials",
+            "type": "object"
+          },
+          "name": {
+            "default": "",
+            "title": "Name",
+            "type": "string"
+          },
+          "i_understand_key_goes_to_chat": {
+            "default": false,
+            "title": "I Understand Key Goes To Chat",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "credentials"
+        ],
+        "title": "add_cabinetArguments",
+        "type": "object"
+      },
+      "outputSchema": {
+        "properties": {
+          "result": {
+            "title": "Result",
+            "type": "string"
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "title": "add_cabinetOutput",
+        "type": "object"
+      },
+      "annotations": {
+        "title": "YM add cabinet",
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "ym_set_key",
+      "description": "Change / rotate the API key from chat (e.g. the old one expired or\n        leaked).\n\n        ⚠️ The key goes into the chat transcript — requires\n        i_understand_key_goes_to_chat=true. The safe, terminal-free alternative\n        is the installer, where the key never enters chat. Use a scoped key and\n        rotate it in the seller cabinet if it was exposed.\n\n        Args:\n            credentials: dict with the required fields ({fields}).\n            cabinet: which cabinet to update. Default: the active one (so \"my key\n                expired\" just works). If there is none, the cabinet is named from\n                the marketplace's shop name, else \"main\".\n            i_understand_key_goes_to_chat: must be true to proceed.\n        On success the key is validated against the marketplace and the shop name\n        is reported. Saved locally (chmod 600), never echoed back.\n        ",
+      "inputSchema": {
+        "properties": {
+          "credentials": {
+            "additionalProperties": true,
+            "title": "Credentials",
+            "type": "object"
+          },
+          "cabinet": {
+            "default": "",
+            "title": "Cabinet",
+            "type": "string"
+          },
+          "i_understand_key_goes_to_chat": {
+            "default": false,
+            "title": "I Understand Key Goes To Chat",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "credentials"
+        ],
+        "title": "set_keyArguments",
+        "type": "object"
+      },
+      "outputSchema": {
+        "properties": {
+          "result": {
+            "title": "Result",
+            "type": "string"
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "title": "set_keyOutput",
+        "type": "object"
+      },
+      "annotations": {
+        "title": "YM set / rotate key",
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "ym_use_cabinet",
+      "description": "Switch the active cabinet. Subsequent API calls use its credentials.\n\n        Args:\n            name: the cabinet to activate (see {svc}_list_cabinets).\n        ",
+      "inputSchema": {
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "title": "use_cabinetArguments",
+        "type": "object"
+      },
+      "outputSchema": {
+        "properties": {
+          "result": {
+            "title": "Result",
+            "type": "string"
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "title": "use_cabinetOutput",
+        "type": "object"
+      },
+      "annotations": {
+        "title": "YM switch cabinet",
+        "readOnlyHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "ym_remove_cabinet",
+      "description": "Delete a stored cabinet. If it was active, another becomes active.\n\n        Args:\n            name: the cabinet to remove.\n        ",
+      "inputSchema": {
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "title": "remove_cabinetArguments",
+        "type": "object"
+      },
+      "outputSchema": {
+        "properties": {
+          "result": {
+            "title": "Result",
+            "type": "string"
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "title": "remove_cabinetOutput",
+        "type": "object"
+      },
+      "annotations": {
+        "title": "YM remove cabinet",
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "ym_list_workflows",
+      "description": "List ready-made analytical workflows (recipes) for this marketplace.\n\n        Returns JSON: [{name, category, when_to_use}]. Use {svc}_get_workflow\n        to fetch the full step-by-step plan for one.\n        ",
+      "inputSchema": {
+        "properties": {},
+        "title": "list_workflowsArguments",
+        "type": "object"
+      },
+      "outputSchema": {
+        "properties": {
+          "result": {
+            "title": "Result",
+            "type": "string"
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "title": "list_workflowsOutput",
+        "type": "object"
+      },
+      "annotations": {
+        "title": "YM list workflows",
+        "readOnlyHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "ym_get_workflow",
+      "description": "Return the full plan for one workflow: ordered steps (each naming a\n        catalog operation_id and why), interpretation guidance, and common\n        mistakes to avoid.\n\n        Args:\n            name: workflow name (see {svc}_list_workflows).\n        ",
+      "inputSchema": {
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "title": "get_workflowArguments",
+        "type": "object"
+      },
+      "outputSchema": {
+        "properties": {
+          "result": {
+            "title": "Result",
+            "type": "string"
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "title": "get_workflowOutput",
+        "type": "object"
+      },
+      "annotations": {
+        "title": "YM get workflow",
+        "readOnlyHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "ym_get_campaigns",
+      "description": "List the seller's shops (кампании) with their campaignId and businessId.\n\n    Call this first: nearly every other Yandex Market method needs a campaignId\n    (магазин) or businessId (кабинет продавца). Both are in the response:\n    campaigns[].id and campaigns[].business.id.\n\n    Args:\n        page_token: pageToken from a previous page (empty for the first page).\n        limit: page size (<=100).\n    Returns JSON: {\"ok\": true, \"data\": {\"campaigns\": [...], \"paging\": {...}}}.\n    ",
+      "inputSchema": {
+        "properties": {
+          "page_token": {
+            "default": "",
+            "title": "Page Token",
+            "type": "string"
+          },
+          "limit": {
+            "default": 50,
+            "title": "Limit",
+            "type": "integer"
+          }
+        },
+        "title": "ym_get_campaignsArguments",
+        "type": "object"
+      },
+      "outputSchema": {
+        "properties": {
+          "result": {
+            "title": "Result",
+            "type": "string"
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "title": "ym_get_campaignsOutput",
+        "type": "object"
+      },
+      "annotations": {
+        "title": "Yandex Market shops (campaigns)",
+        "readOnlyHint": true,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "ym_get_orders",
+      "description": "List orders of one shop (GET /v2/campaigns/{campaignId}/orders).\n\n    Args:\n        campaign_id: shop id from ym_get_campaigns.\n        status: filter, e.g. PROCESSING | DELIVERY | PICKUP | DELIVERED |\n            CANCELLED | UNPAID (comma-separated allowed). Empty = all.\n        from_date: order creation date lower bound, DD-MM-YYYY (Yandex format).\n        to_date: upper bound, DD-MM-YYYY.\n        page_token: pageToken from a previous page.\n        limit: page size (<=50).\n    Returns JSON: {\"ok\": true, \"data\": {\"orders\": [...], \"paging\": {...}}}.\n    For every order across pages use ym_fetch_all with ym_get_orders.\n    ",
+      "inputSchema": {
+        "properties": {
+          "campaign_id": {
+            "title": "Campaign Id",
+            "type": "integer"
+          },
+          "status": {
+            "default": "",
+            "title": "Status",
+            "type": "string"
+          },
+          "from_date": {
+            "default": "",
+            "title": "From Date",
+            "type": "string"
+          },
+          "to_date": {
+            "default": "",
+            "title": "To Date",
+            "type": "string"
+          },
+          "page_token": {
+            "default": "",
+            "title": "Page Token",
+            "type": "string"
+          },
+          "limit": {
+            "default": 50,
+            "title": "Limit",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "campaign_id"
+        ],
+        "title": "ym_get_ordersArguments",
+        "type": "object"
+      },
+      "outputSchema": {
+        "properties": {
+          "result": {
+            "title": "Result",
+            "type": "string"
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "title": "ym_get_ordersOutput",
+        "type": "object"
+      },
+      "annotations": {
+        "title": "Yandex Market orders",
+        "readOnlyHint": true,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "ym_get_offers",
+      "description": "List the seller's offers (товары) with their Market card mapping\n    (POST /v2/businesses/{businessId}/offer-mappings).\n\n    Args:\n        business_id: cabinet id (campaigns[].business.id).\n        offer_ids: comma-separated offerId (SKU) filter; empty = all.\n        page_token: pageToken from a previous page.\n        limit: page size (<=200).\n    Returns JSON: {\"ok\": true, \"data\": {\"result\": {\"offerMappings\": [...], \"paging\": {...}}}}.\n    ",
+      "inputSchema": {
+        "properties": {
+          "business_id": {
+            "title": "Business Id",
+            "type": "integer"
+          },
+          "offer_ids": {
+            "default": "",
+            "title": "Offer Ids",
+            "type": "string"
+          },
+          "page_token": {
+            "default": "",
+            "title": "Page Token",
+            "type": "string"
+          },
+          "limit": {
+            "default": 100,
+            "title": "Limit",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "business_id"
+        ],
+        "title": "ym_get_offersArguments",
+        "type": "object"
+      },
+      "outputSchema": {
+        "properties": {
+          "result": {
+            "title": "Result",
+            "type": "string"
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "title": "ym_get_offersOutput",
+        "type": "object"
+      },
+      "annotations": {
+        "title": "Yandex Market offers (catalog)",
+        "readOnlyHint": true,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "ym_get_stocks",
+      "description": "Stock per offer per warehouse for one shop, with optional turnover\n    (POST /v2/campaigns/{campaignId}/offers/stocks).\n\n    Args:\n        campaign_id: shop id.\n        offer_ids: comma-separated offerId filter; empty = all.\n        with_turnover: also return turnover (оборачиваемость) per offer.\n        page_token: pageToken from a previous page.\n        limit: page size (<=200).\n    Returns JSON: {\"ok\": true, \"data\": {\"result\": {\"warehouses\": [{\"warehouseId\", \"offers\": [...]}]}}}.\n    ",
+      "inputSchema": {
+        "properties": {
+          "campaign_id": {
+            "title": "Campaign Id",
+            "type": "integer"
+          },
+          "offer_ids": {
+            "default": "",
+            "title": "Offer Ids",
+            "type": "string"
+          },
+          "with_turnover": {
+            "default": false,
+            "title": "With Turnover",
+            "type": "boolean"
+          },
+          "page_token": {
+            "default": "",
+            "title": "Page Token",
+            "type": "string"
+          },
+          "limit": {
+            "default": 100,
+            "title": "Limit",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "campaign_id"
+        ],
+        "title": "ym_get_stocksArguments",
+        "type": "object"
+      },
+      "outputSchema": {
+        "properties": {
+          "result": {
+            "title": "Result",
+            "type": "string"
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "title": "ym_get_stocksOutput",
+        "type": "object"
+      },
+      "annotations": {
+        "title": "Yandex Market stocks",
+        "readOnlyHint": true,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "ym_get_prices",
+      "description": "Base prices set for all shops of the cabinet\n    (POST /v2/businesses/{businessId}/offer-prices).\n\n    Args:\n        business_id: cabinet id.\n        offer_ids: comma-separated offerId filter; empty = all.\n        page_token: pageToken from a previous page.\n        limit: page size (<=200).\n    Returns JSON with result.offers[].price {value, currencyId, discountBase, updatedAt}.\n    ",
+      "inputSchema": {
+        "properties": {
+          "business_id": {
+            "title": "Business Id",
+            "type": "integer"
+          },
+          "offer_ids": {
+            "default": "",
+            "title": "Offer Ids",
+            "type": "string"
+          },
+          "page_token": {
+            "default": "",
+            "title": "Page Token",
+            "type": "string"
+          },
+          "limit": {
+            "default": 100,
+            "title": "Limit",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "business_id"
+        ],
+        "title": "ym_get_pricesArguments",
+        "type": "object"
+      },
+      "outputSchema": {
+        "properties": {
+          "result": {
+            "title": "Result",
+            "type": "string"
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "title": "ym_get_pricesOutput",
+        "type": "object"
+      },
+      "annotations": {
+        "title": "Yandex Market prices",
+        "readOnlyHint": true,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "ym_set_price",
+      "description": "Set the base price of ONE offer for all shops of the cabinet\n    (POST /v2/businesses/{businessId}/offer-prices/updates). WRITE.\n\n    Requires confirm_write=true. discount_base is the strikethrough price\n    (must be higher than price); 0 = no discount shown.\n\n    Args:\n        business_id: cabinet id.\n        offer_id: seller's SKU (offerId).\n        price: new price, e.g. 1499.\n        discount_base: pre-discount price, or 0 to clear.\n        currency: RUR (default) — Yandex uses \"RUR\", not \"RUB\".\n        confirm_write: must be true to send.\n    Returns JSON: {\"ok\": true, \"data\": {\"status\": \"OK\"}} on success.\n    ",
+      "inputSchema": {
+        "properties": {
+          "business_id": {
+            "title": "Business Id",
+            "type": "integer"
+          },
+          "offer_id": {
+            "title": "Offer Id",
+            "type": "string"
+          },
+          "price": {
+            "title": "Price",
+            "type": "number"
+          },
+          "discount_base": {
+            "default": 0,
+            "title": "Discount Base",
+            "type": "number"
+          },
+          "currency": {
+            "default": "RUR",
+            "title": "Currency",
+            "type": "string"
+          },
+          "confirm_write": {
+            "default": false,
+            "title": "Confirm Write",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "business_id",
+          "offer_id",
+          "price"
+        ],
+        "title": "ym_set_priceArguments",
+        "type": "object"
+      },
+      "outputSchema": {
+        "properties": {
+          "result": {
+            "title": "Result",
+            "type": "string"
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "title": "ym_set_priceOutput",
+        "type": "object"
+      },
+      "annotations": {
+        "title": "Yandex Market set price",
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      }
+    }
+  ],
+  "resources": [],
+  "prompts": []
+}
