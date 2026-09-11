@@ -20,7 +20,7 @@ Cline: `cline_mcp_settings.json`.
   "mcpServers": {
     "ym": {
       "command": "uvx",
-      "args": ["--from", "git+https://github.com/ilyautov/yandex-market-mcp-ru", "yandex-market-mcp-ru"],
+      "args": ["yandex-market-mcp-ru"],
       "env": {
         "YANDEX_MARKET_API_KEY": "<значение>"
       },

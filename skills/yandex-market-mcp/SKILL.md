@@ -12,16 +12,16 @@ description: "Подключить Яндекс Маркет к ИИ-ассис�
 
 ## Установка
 
-Первый релиз на PyPI выпускается тегом `v0.5.3`, до этого пакет ставится прямо из репозитория:
-
-```bash
-uvx --from git+https://github.com/ilyautov/yandex-market-mcp-ru yandex-market-mcp-ru
-```
-
-После релиза строка короче:
+Пакет на PyPI, поэтому строка одна:
 
 ```bash
 uvx yandex-market-mcp-ru
+```
+
+Если нужна ветка `main`, а не релиз:
+
+```bash
+uvx --from git+https://github.com/ilyautov/yandex-market-mcp-ru yandex-market-mcp-ru
 ```
 
 Конфигурация клиента (Claude Desktop, Cursor, Claude Code):
@@ -31,7 +31,7 @@ uvx yandex-market-mcp-ru
   "mcpServers": {
     "ym": {
       "command": "uvx",
-      "args": ["--from", "git+https://github.com/ilyautov/yandex-market-mcp-ru", "yandex-market-mcp-ru"],
+      "args": ["yandex-market-mcp-ru"],
       "env": {
         "YANDEX_MARKET_API_KEY": "<значение>"
       }
