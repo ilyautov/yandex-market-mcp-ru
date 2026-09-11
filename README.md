@@ -42,11 +42,17 @@ Claude Desktop, `claude_desktop_config.json`:
   "mcpServers": {
     "ym": {
       "command": "uvx",
-      "args": ["yandex-market-mcp-ru"],
+      "args": ["--from", "git+https://github.com/ilyautov/yandex-market-mcp-ru", "yandex-market-mcp-ru"],
       "env": { "YANDEX_MARKET_API_KEY": "..." }
     }
   }
 }
+```
+
+Третий путь, если агент умеет скиллы: он поставит сервер и настроит клиент сам.
+
+```bash
+npx skills add ilyautov/yandex-market-mcp-ru
 ```
 
 ## Ключи
