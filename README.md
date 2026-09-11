@@ -129,6 +129,9 @@ npx skills add ilyautov/yandex-market-mcp-ru
 [**moysklad-mcp-ru**](https://github.com/ilyautov/moysklad-mcp-ru) и
 [**humanizer-ru**](https://github.com/ilyautov/humanizer-ru).
 
+Все проекты одним списком, разобранные по назначению:
+[ilyautov.github.io](https://ilyautov.github.io/).
+
 ## Лицензия
 
 MIT, см. [LICENSE](LICENSE).
