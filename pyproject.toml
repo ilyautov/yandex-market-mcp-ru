@@ -1,6 +1,6 @@
 [project]
 name = "yandex-market-mcp-ru"
-version = "0.5.3"
+version = "0.5.4"
 description = "API Яндекс Маркета (Partner API) для ИИ-ассистентов: заказы и возвраты, товары и карточки, цены и тарифы, отчёты, отзывы и чаты"
 keywords = ["mcp", "model-context-protocol", "yandex-market", "yandex-market-api", "яндекс-маркет", "seller-api", "marketplace", "ecommerce", "russia", "claude"]
 readme = "README.md"
