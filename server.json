@@ -3,7 +3,7 @@
   "name": "io.github.ilyautov/yandex-market-mcp-ru",
   "title": "Яндекс Маркет MCP (RU)",
   "description": "API Яндекс Маркета в ИИ-ассистенте: заказы, товары, цены, отчёты, отзывы",
-  "version": "0.5.4",
+  "version": "0.6.0",
   "websiteUrl": "https://marketplaces-mcp-ru.aifrontier.tech/yandex-market-api.html",
   "repository": {
     "url": "https://github.com/ilyautov/yandex-market-mcp-ru",
@@ -14,7 +14,7 @@
       "registryType": "pypi",
       "registryBaseUrl": "https://pypi.org",
       "identifier": "yandex-market-mcp-ru",
-      "version": "0.5.4",
+      "version": "0.6.0",
       "runtimeHint": "uvx",
       "transport": {
         "type": "stdio"
