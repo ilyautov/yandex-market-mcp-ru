@@ -59,10 +59,20 @@ jobs:
           echo "PyPI never served $V — publish-pypi.yml failed or is still running" >&2
           exit 1
 
+      # Версия и сумма заданы явно: раньше шаг брал `releases/latest` и
+      # распаковывал архив прямо из потока. Следующим шагом этот бинарник
+      # получает OIDC-токен с правом публикации от нашего имени, поэтому он не
+      # должен меняться молча. Сумма из registry_1.8.1_checksums.txt.
       - name: Install mcp-publisher
+        env:
+          MCP_PUBLISHER_VERSION: "1.8.1"
+          MCP_PUBLISHER_SHA256: "a06c9096dcb9727c13555b6be26c7effa707b01f06a4c561ba7a3635443cf2cc"
         run: |
-          curl -sSL "https://github.com/modelcontextprotocol/registry/releases/latest/download/mcp-publisher_$(uname -s | tr '[:upper:]' '[:lower:]')_$(uname -m | sed 's/x86_64/amd64/').tar.gz" \
-            | tar xz mcp-publisher
+          curl -fsSL -o mcp-publisher.tar.gz \
+            "https://github.com/modelcontextprotocol/registry/releases/download/v${MCP_PUBLISHER_VERSION}/mcp-publisher_linux_amd64.tar.gz"
+          echo "${MCP_PUBLISHER_SHA256}  mcp-publisher.tar.gz" | sha256sum -c -
+          tar xzf mcp-publisher.tar.gz mcp-publisher
+          rm -f mcp-publisher.tar.gz
           sudo mv mcp-publisher /usr/local/bin/
 
       - name: Login and publish
